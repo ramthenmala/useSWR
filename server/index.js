@@ -1,20 +1,16 @@
-const express = require('express')
-const cors = require('cors')
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import { recentInvestment } from "./data/recentinvestment.js";
 
 const app = express();
-app.use(cors())
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
-const users = [
-    {
-        name: 'Ram'
-    },
-    {
-        name: 'Kumar'
-    }
-
-]
-app.get('/users', (req, res, next) => {
-    res.send(users)
+app.get('/recentinvestment', (req, res, next) => {
+    res.send(recentInvestment)
 });
 
 app.listen(9001, () => {
